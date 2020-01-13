@@ -1,50 +1,80 @@
 <?php namespace App\Controllers;
 
 use App\entities\users;
-
+use App\entities\marketing;
 use App\Models\UsersModel;
-
+use App\Models\MarketingModel;
 
 class MainController extends BaseController
 {
-
     public function index()
     {
-        $db = \Config\Database::connect();
+    $db = \Config\Database::connect();
 
-        $sql = "SELECT * FROM users";
+    $sql = "SELECT * FROM users";
 
-        $sql_function = "SELECT FUNCAO FROM users";
+    $sqlFunction = "SELECT FUNCAO FROM users";
 
-        $query_function = $db->query($sql_function);
+    $queryFunction = $db->query($sql_function);
 
-        $results_function = $query_function->getResultArray();
+    $resultsFunction = $queryFunction->getResultArray();
 
-        $query = $db->query($sql);
+    $query = $db->query($sql);
 
-        $results = $query->getResultArray();
+    $results = $query->getResultArray();
 
-        $title = "Titulo do card";
+    $title = "Titulo do card";
 
-        $formtitle = "Form Adding Data";
+    $formTitle = "Form Adding Data";
 
-        $data = [
-                'name' => $formtitle,
-                'title' => $title,
-                 'results' => $results,
-                 'option' => $results_function];
-
-        echo view('index',$data);
-    }
-
+    $data = [
+    'name' => $formTitle,
+    'title' => $title,
+    'results' => $results,
+    'option' => $resultsFunction
+    ];
+    echo view('index',$data);
+}
 
     public function addData()
     {
-        $userModel = new UsersModel();
-        $data = $this->request->getPost();
-        $user = new \App\Entities\users($data);
-        $userModel->save($user);
-        return redirect()->to('index');
+    $userModel = new UsersModel();
+    $data = $this->request->getPost();
+    $user = new \App\Entities\users($data);
+    $userModel->save($user);
+    return redirect()->to('index');
+    }
+
+    public function Marketing()
+    {
+    $db = \Config\Database::connect();
+
+    $sql = "SELECT * from marketing";
+
+    $query = $db->query($sql);
+
+    $results = $query->getResultArray();
+
+    $title = "Marketing";
+
+    $form = "Formulary Marketing";
+
+    $data = [
+    "form" => $form,
+    "title" => $title,
+    'results' => $results
+    ];
+
+    echo view('marketing', $data);
+    }
+
+    public function addMaketing()
+    {
+    $model = new MarketingModel();
+    $data = $this->request->getPost();
+    $user = new \App\Entities\marketing($data);
+    $model->save($user);
+    return redirect()->to('marketing');
     }
 
 }

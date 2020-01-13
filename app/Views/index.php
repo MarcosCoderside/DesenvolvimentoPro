@@ -14,8 +14,14 @@
 
     <div class="container-fluid">
 
-    <ul class="">
-    
+    <ul class="nav bg-dark">
+        <li class="nav-item">
+            <a class="nav-link text-light" style="font-weight:bold" href="<?= 'index' ?>">Neurotech</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-light" style="font-weight:bold" href="<?= 'marketing' ?>">Created Marketing</a>
+        </li>
     </ul>
         <div class="row">
             <div class="col-6">
