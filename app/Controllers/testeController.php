@@ -2,5 +2,11 @@
 
 
 class testeController extends BaseController{
-    
+
+
+    public function index()
+    {
+        
+    }
+
 }
