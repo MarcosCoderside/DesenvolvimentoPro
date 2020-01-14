@@ -15,7 +15,7 @@ class MainController extends BaseController
 
     $sqlFunction = "SELECT FUNCAO FROM users";
 
-    $queryFunction = $db->query($sql_function);
+    $queryFunction = $db->query($sqlFunction);
 
     $resultsFunction = $queryFunction->getResultArray();
 
@@ -75,6 +75,22 @@ class MainController extends BaseController
     $user = new \App\Entities\marketing($data);
     $model->save($user);
     return redirect()->to('marketing');
+    }
+
+    public function sales()
+    {
+
+        $db = \Config\Database::connect();
+
+        $sql = "SELECT * FROM state";
+
+        $query = $db->query($sql);
+
+        $results = $query->getResultArray();
+
+        $data = ["results" => $results];
+
+        return view('sales', $data);
     }
 
 }

@@ -74,6 +74,8 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('marketing', 'MainController::Marketing');
 
+$routes->get('sales','MainController::sales');
+
 $routes->match(['get','post'],'addMaketing','MainController::addMaketing');
 
 $routes->match(['get','post'],'addData','MainController::addData');
